@@ -11,9 +11,15 @@ export class AuthController {
   async register(@Payload() registerDto: RegisterDto) {
     try {
       return await this.authService.register(registerDto);
-    } catch (error) {
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        return {
+          error: error.message,
+          statusCode: 400,
+        };
+      }
       return {
-        error: error.message,
+        error: 'An unknown error occurred',
         statusCode: 400,
       };
     }
@@ -23,10 +29,16 @@ export class AuthController {
   async login(@Payload() loginDto: LoginDto) {
     try {
       return await this.authService.login(loginDto);
-    } catch (error) {
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        return {
+          error: 'Invalid credentials',
+          statusCode: 401,
+        };
+      }
       return {
-        error: 'Invalid credentials',
-        statusCode: 401,
+        error: 'An unknown error occurred',
+        statusCode: 400,
       };
     }
   }
@@ -35,10 +47,16 @@ export class AuthController {
   async validateToken(@Payload() token: string) {
     try {
       return await this.authService.validateToken(token);
-    } catch (error) {
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        return {
+          error: 'Invalid token',
+          statusCode: 401,
+        };
+      }
       return {
-        error: 'Invalid token',
-        statusCode: 401,
+        error: 'An unknown error occurred',
+        statusCode: 400,
       };
     }
   }

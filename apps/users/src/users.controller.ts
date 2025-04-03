@@ -14,10 +14,16 @@ export class UsersController {
   async findAll() {
     try {
       return await this.usersService.findAll();
-    } catch (error) {
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        return {
+          error: error.message,
+          statusCode: 500,
+        };
+      }
       return {
-        error: error.message,
-        statusCode: 500,
+        error: 'An unknown error occurred',
+        statusCode: 400,
       };
     }
   }
@@ -26,10 +32,16 @@ export class UsersController {
   async findOne(@Payload() id: string) {
     try {
       return await this.usersService.findOne(id);
-    } catch (error) {
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        return {
+          error: 'User not found',
+          statusCode: 404,
+        };
+      }
       return {
-        error: 'User not found',
-        statusCode: 404,
+        error: 'An unknown error occurred',
+        statusCode: 400,
       };
     }
   }
@@ -38,9 +50,15 @@ export class UsersController {
   async create(@Payload() createUserDto: CreateUserDto) {
     try {
       return await this.usersService.create(createUserDto);
-    } catch (error) {
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        return {
+          error: error.message,
+          statusCode: 400,
+        };
+      }
       return {
-        error: error.message,
+        error: 'An unknown error occurred',
         statusCode: 400,
       };
     }
@@ -51,9 +69,15 @@ export class UsersController {
     try {
       const { id, updateUserDto } = data;
       return await this.usersService.update(id, updateUserDto);
-    } catch (error) {
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        return {
+          error: error.message,
+          statusCode: 400,
+        };
+      }
       return {
-        error: error.message,
+        error: 'An unknown error occurred',
         statusCode: 400,
       };
     }
@@ -63,9 +87,15 @@ export class UsersController {
   async remove(@Payload() id: string) {
     try {
       return await this.usersService.remove(id);
-    } catch (error) {
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        return {
+          error: error.message,
+          statusCode: 400,
+        };
+      }
       return {
-        error: error.message,
+        error: 'An unknown error occurred',
         statusCode: 400,
       };
     }

@@ -10,7 +10,7 @@ import * as bcrypt from 'bcrypt';
 export class AuthService {
   constructor(
     @InjectModel(User.name) private userModel: Model<User>,
-    private jwtService: JwtService,
+    private readonly jwtService: JwtService,
   ) {}
 
   async register(registerDto: RegisterDto) {
@@ -61,7 +61,10 @@ export class AuthService {
         email: user.email,
         role: user.role,
       };
-    } catch (error) {
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        throw new UnauthorizedException(error.message);
+      }
       throw new UnauthorizedException('Invalid token');
     }
   }

@@ -1,0 +1,7 @@
+{
+    "builds": [
+      { "src": "apps/gateway/*", "use": "@railway/node" },
+      { "src": "apps/auth/*", "use": "@railway/node" },
+      { "src": "apps/users/*", "use": "@railway/node" }
+    ]
+  }

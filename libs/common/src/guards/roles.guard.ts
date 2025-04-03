@@ -1,7 +1,17 @@
-import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
+import {
+  Injectable,
+  CanActivate,
+  ExecutionContext,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { UserRole } from 'libs/database/src/models/user.model';
 import { JwtService } from '@nestjs/jwt';
+
+interface JwtPayload {
+  role: UserRole;
+  userId: string; // Adjust this based on your actual payload structure
+}
 
 @Injectable()
 export class RolesGuard implements CanActivate {
@@ -20,12 +30,19 @@ export class RolesGuard implements CanActivate {
     }
 
     const request = context.switchToHttp().getRequest();
+
     const token = request.headers.authorization?.split(' ')[1];
     if (!token) {
-      return false;
+      throw new UnauthorizedException('Authorization token not found');
     }
 
-    const payload = this.jwtService.verify(token);
+    let payload: JwtPayload;
+    try {
+      payload = this.jwtService.verify<JwtPayload>(token);
+    } catch {
+      throw new UnauthorizedException('Invalid token');
+    }
+
     return requiredRoles.includes(payload.role);
   }
 }

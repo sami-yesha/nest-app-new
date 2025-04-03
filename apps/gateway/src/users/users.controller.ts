@@ -12,13 +12,7 @@ import {
   Inject,
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import {
-  ApiTags,
-  ApiOperation,
-  ApiResponse,
-  ApiBearerAuth,
-  ApiBody,
-} from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger';
 import { UserResponseDto } from 'libs/common/src/interfaces/user.dto';
 import { RolesGuard } from 'libs/common/src/guards/roles.guard';
 import { Roles } from 'libs/common/src/decorators/roles.decorator';
@@ -29,7 +23,6 @@ import {
 } from 'libs/common/src/interfaces/user.dto';
 
 @ApiTags('Users')
-@ApiBearerAuth('JWT-auth')
 @Controller('users')
 @UseGuards(RolesGuard)
 export class UsersController {

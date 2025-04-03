@@ -50,9 +50,8 @@ export class UsersService {
     return this.sanitizeUser(user);
   }
 
-  private sanitizeUser(user: User): UserResponseDto {
-    const sanitized = user.toObject();
-    delete sanitized.password;
+  private sanitizeUser(user: User): Omit<UserResponseDto, 'password'> {
+    const sanitized = user.toObject() as Omit<UserResponseDto, 'password'>;
     return sanitized;
   }
 }

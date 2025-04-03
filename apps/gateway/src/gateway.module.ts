@@ -14,7 +14,7 @@ import { RolesGuard } from 'libs/common/src/guards/roles.guard';
     ConfigModule.forRoot(),
     JwtModule.registerAsync({
       imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => ({
+      useFactory: (configService: ConfigService) => ({
         secret: configService.get<string>('JWT_SECRET'),
         signOptions: { expiresIn: '1h' },
       }),
@@ -24,20 +24,20 @@ import { RolesGuard } from 'libs/common/src/guards/roles.guard';
       {
         name: 'AUTH_SERVICE',
         transport: Transport.TCP,
-        options: { 
+        options: {
           host: 'localhost', // Changed from 'auth-service' to 'localhost'
-          port: 3002 
-        }
+          port: 3002,
+        },
       },
       {
         name: 'USER_SERVICE',
         transport: Transport.TCP,
-        options: { 
+        options: {
           host: 'localhost', // Changed from 'user-service' to 'localhost'
-          port: 3003 
-        }
-      }
-    ])
+          port: 3003,
+        },
+      },
+    ]),
   ],
   controllers: [GatewayController, AuthController, UsersController],
   providers: [

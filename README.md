@@ -59,15 +59,15 @@ Run each service in separate terminals:
 
 1, Auth Service
 
-yarn start:dev auth
+yarn start:dev:auth
 
 2, Users Service
 
-yarn start:dev users
+yarn start:dev:users
 
 3, Gateway Service
 
-yarn start:dev gateway
+yarn start:dev:gateway
 
 
 API Endpoints

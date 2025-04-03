@@ -33,6 +33,7 @@ export class UsersService {
     id: string,
     updateUserDto: UpdateUserDto,
   ): Promise<UserResponseDto> {
+    console.log('service update', id);
     const user = await this.userModel
       .findByIdAndUpdate(id, updateUserDto, { new: true })
       .exec();
@@ -42,12 +43,17 @@ export class UsersService {
     return this.sanitizeUser(user);
   }
 
-  async remove(id: string): Promise<UserResponseDto> {
-    const user = await this.userModel.findByIdAndDelete(id).exec();
-    if (!user) {
+  async remove(id: string): Promise<{ success: boolean; message: string }> {
+    const result = await this.userModel.deleteOne({ _id: id }).exec();
+
+    if (result.deletedCount === 0) {
       throw new NotFoundException('User not found');
     }
-    return this.sanitizeUser(user);
+
+    return {
+      success: true,
+      message: 'User deleted successfully',
+    };
   }
 
   private sanitizeUser(user: User): Omit<UserResponseDto, 'password'> {

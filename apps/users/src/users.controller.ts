@@ -68,6 +68,7 @@ export class UsersController {
   async update(@Payload() data: { id: string; updateUserDto: UpdateUserDto }) {
     try {
       const { id, updateUserDto } = data;
+      console.log(' controller update', updateUserDto);
       return await this.usersService.update(id, updateUserDto);
     } catch (error: unknown) {
       if (error instanceof Error) {

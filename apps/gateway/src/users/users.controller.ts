@@ -68,7 +68,8 @@ export class UsersController {
   @Put(':id')
   @Roles(UserRole.ADMIN)
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.client.send('updateUser', { id, ...updateUserDto });
+    console.log('updateUserdto', updateUserDto);
+    return this.client.send('updateUser', { id, updateUserDto });
   }
 
   @Delete(':id')

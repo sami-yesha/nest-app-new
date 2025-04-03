@@ -8,6 +8,10 @@
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
+    "start:dev:auth": "nest start auth --watch",
+    "start:dev:users": "nest start users --watch",
+    "start:dev:gateway": "nest start gateway --watch",
+    "start:dev:all": "concurrently \"yarn start:dev:auth\" \"yarn start:dev:users\" \"yarn start:dev:gateway\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
@@ -46,6 +50,7 @@
     "@types/jest": "^29.5.14",
     "@types/node": "^22.10.7",
     "@types/supertest": "^6.0.2",
+    "concurrently": "^9.1.2",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.2",

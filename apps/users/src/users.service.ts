@@ -17,7 +17,7 @@ export class UsersService {
     return this.sanitizeUser(user);
   }
   async findAll(): Promise<UserResponseDto[]> {
-    const users = await this.userModel.find().exec();
+    const users = await this.userModel.find().select('-password -role').exec();
     return users.map((user) => this.sanitizeUser(user));
   }
 

@@ -12,7 +12,13 @@ import {
   Inject,
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { ApiTags, ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiBody,
+  ApiParam,
+} from '@nestjs/swagger';
 import { UserResponseDto } from 'libs/common/src/interfaces/user.dto';
 import { RolesGuard } from 'libs/common/src/guards/roles.guard';
 import { Roles } from 'libs/common/src/decorators/roles.decorator';
@@ -39,13 +45,21 @@ export class UsersController {
   })
   @ApiResponse({ status: 401, description: 'Unauthorized' })
   @ApiResponse({ status: 403, description: 'Forbidden' })
-  @Roles(UserRole.USER, UserRole.ADMIN)
   findAll() {
     return this.client.send('findAllUsers', {});
   }
 
   @Get(':id')
   @Roles(UserRole.USER, UserRole.ADMIN)
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Get a user by ID' })
+  @ApiParam({ name: 'id', required: true, description: 'User ID' })
+  @ApiResponse({
+    status: 200,
+    description: 'User details',
+    type: UserResponseDto,
+  })
+  @ApiResponse({ status: 404, description: 'User not found' })
   findOne(@Param('id') id: string) {
     return this.client.send('findOneUser', id);
   }
@@ -57,7 +71,7 @@ export class UsersController {
   @ApiBody({ type: CreateUserDto })
   @ApiResponse({
     status: 201,
-    description: 'User created',
+    description: 'User created successfully',
     type: UserResponseDto,
   })
   @ApiResponse({ status: 400, description: 'Bad Request' })
@@ -67,6 +81,17 @@ export class UsersController {
 
   @Put(':id')
   @Roles(UserRole.ADMIN)
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Update a user' })
+  @ApiParam({ name: 'id', required: true, description: 'User ID' })
+  @ApiBody({ type: UpdateUserDto })
+  @ApiResponse({
+    status: 200,
+    description: 'User updated successfully',
+    type: UserResponseDto,
+  })
+  @ApiResponse({ status: 400, description: 'Bad Request' })
+  @ApiResponse({ status: 404, description: 'User not found' })
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     console.log('updateUserdto', updateUserDto);
     return this.client.send('updateUser', { id, updateUserDto });
@@ -74,6 +99,11 @@ export class UsersController {
 
   @Delete(':id')
   @Roles(UserRole.ADMIN)
+  @HttpCode(HttpStatus.NO_CONTENT)
+  @ApiOperation({ summary: 'Delete a user' })
+  @ApiParam({ name: 'id', required: true, description: 'User ID' })
+  @ApiResponse({ status: 204, description: 'User deleted successfully' })
+  @ApiResponse({ status: 404, description: 'User not found' })
   remove(@Param('id') id: string) {
     return this.client.send('removeUser', id);
   }

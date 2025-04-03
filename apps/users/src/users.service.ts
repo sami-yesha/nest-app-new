@@ -4,10 +4,9 @@ import { Model } from 'mongoose';
 import { User } from 'libs/database/src/models/user.model';
 import {
   CreateUserDto,
-  UpdateUserDto,
   UserResponseDto,
+  UpdateUserDto,
 } from 'libs/common/src/interfaces/user.dto';
-
 @Injectable()
 export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}

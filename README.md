@@ -1,25 +1,26 @@
-# NestJS Microservices Starter
+# NestJS Microservices Starter 🚀
 
-A production-ready NestJS microservices architecture with API Gateway, Authentication, and User Management services.
+A **production-ready** NestJS microservices architecture with an API Gateway, Authentication, and User Management services.
 
-## Features
+## 📌 Features
 
-- **Hybrid Architecture**:
-  - API Gateway (HTTP + TCP)
-  - Auth Microservice (JWT authentication)
-  - Users Microservice (CRUD operations)
+### ✅ **Hybrid Architecture**
+- API Gateway with **HTTP + TCP communication**
+- Authentication microservice with **JWT-based authentication**
+- Users microservice for **user management and role-based access control (RBAC)**
 
-- **Authentication**:
-  - User registration & login
-  - JWT token generation
-  - Role-based access control (RBAC)
+### 🔒 **Authentication & Security**
+- User registration & login
+- **JWT token generation & validation**
+- Secure **password hashing with bcrypt**
+- Role-based access control (**RBAC**)
 
-- **User Management**:
-  - Create, read, update, delete users
-  - Admin-only operations
-  - Secure password handling
+### 👥 **User Management**
+- Create, read, update, and delete users
+- **Admin-only operations** for user management
+- Secure user data handling
 
-## Tech Stack
+## 🛠 **Tech Stack**
 
 - **Core**: NestJS, TypeScript
 - **Communication**: TCP microservices
@@ -27,64 +28,79 @@ A production-ready NestJS microservices architecture with API Gateway, Authentic
 - **Security**: JWT, bcrypt
 - **Validation**: class-validator, class-transformer
 
-## Getting Started
+---
 
-### Prerequisites
+## 🚀 Getting Started
 
-- Node.js (v16+)
-- MongoDB (local or cloud instance)
-- npm or yarn
+### 📌 Prerequisites
 
-### Installation
+Make sure you have the following installed:
+- **Node.js** (v16+)
+- **MongoDB** (local or cloud instance)
+- **npm** or **yarn**
 
-1. Clone the repository:
+### 🔧 Installation
+
+1️⃣ **Clone the repository:**
 ```bash
-git clone https://github.com/sami-yesha/nest-app-new.git
-cd nest-app-new
+  git clone https://github.com/sami-yesha/nest-app-new.git
+  cd nest-app-new
+```
 
-2, Install dependencies
+2️⃣ **Install dependencies:**
+```bash
+  yarn install  # or npm install
+```
 
-yarn install
+3️⃣ **Set up environment variables:**
+- Create a **.env** file in the root directory (`nest-app-new`)
+- Add the following configurations:
 
-3, Create .env file in the root directory (nest-app-new)
-
-4, Update .env with your configuration:
-
+```env
 MONGODB_URI=mongodb://localhost:27017/nest-microservices
 JWT_SECRET=your-very-strong-secret
+```
 
-Running the Services
+---
 
-Run each service in separate terminals:
+## ⚡ Running the Services
 
-1, Auth Service
+Each microservice runs independently. Open **separate terminals** and start each service:
 
+### 🛡 **Auth Service**
+```bash
 yarn start:dev:auth
+```
 
-2, Users Service
-
+### 👥 **Users Service**
+```bash
 yarn start:dev:users
+```
 
-3, Gateway Service
-
+### 🌐 **Gateway Service**
+```bash
 yarn start:dev:gateway
+```
 
+---
 
-API Endpoints
-Method	Endpoint	Description	Access
-POST	/auth/register	Register new user	Public
-POST	/auth/login	Login user	Public
-GET	/users	List all users	User, Admin
-POST	/users	Create new user	Admin only
-GET	/users/:id	Get user by ID	User, Admin
-PUT	/users/:id	Update user	Admin only
-DELETE	/users/:id	Delete user	Admin only
+## 📡 API Endpoints
 
+| Method | Endpoint       | Description         | Access |
+|--------|---------------|---------------------|--------|
+| POST   | `/auth/register` | Register new user  | Public |
+| POST   | `/auth/login`    | Login user        | Public |
+| GET    | `/users`        | List all users     | User, Admin |
+| POST   | `/users`        | Create new user    | Admin only |
+| GET    | `/users/:id`    | Get user by ID     | User, Admin |
+| PUT    | `/users/:id`    | Update user        | Admin only |
+| DELETE | `/users/:id`    | Delete user        | Admin only |
 
+---
 
-Project Structure
-Copy
+## 📂 Project Structure
 
+```
 nest-microservices/
 ├── apps/
 │   ├── gateway/          # API Gateway (HTTP + TCP)
@@ -95,3 +111,41 @@ nest-microservices/
 │   ├── database/         # MongoDB connection and models
 ├── .env.example          # Environment variables template
 └── README.md             # Project documentation
+```
+
+---
+
+## 🚀 Deployment
+
+### 🏗 **Build for Production**
+```bash
+yarn build
+```
+
+### 🚀 **Run in Production Mode**
+```bash
+yarn start:prod
+```
+
+---
+
+## 🤝 Contribution Guidelines
+
+1. **Fork the repository**
+2. **Create a new branch** for your feature
+3. **Commit your changes** with a clear message
+4. **Push to your branch** and create a Pull Request (PR)
+5. **Wait for the review** and merge 🎉
+
+---
+
+## 📜 License
+
+This project is **MIT Licensed**.
+
+---
+
+## 💡 Need Help?
+
+If you have any questions or issues, feel free to reach out or open a GitHub Issue! 🚀
+

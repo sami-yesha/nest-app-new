@@ -86,15 +86,15 @@ yarn start:dev:gateway
 
 ## 📡 API Endpoints
 
-| Method | Endpoint       | Description         | Access |
-|--------|---------------|---------------------|--------|
-| POST   | `/auth/register` | Register new user  | Public |
-| POST   | `/auth/login`    | Login user        | Public |
-| GET    | `/users`        | List all users     | User, Admin |
-| POST   | `/users`        | Create new user    | Admin only |
-| GET    | `/users/:id`    | Get user by ID     | User, Admin |
-| PUT    | `/users/:id`    | Update user        | Admin only |
-| DELETE | `/users/:id`    | Delete user        | Admin only |
+| Method | Endpoint       | Description         | Access |         | Authorization
+|--------|---------------|---------------------|--------|----------|-------------
+| POST   | `/auth/register` | Register new user  | Public |          | N/A
+| POST   | `/auth/login`    | Login user        | Public |           | N/A
+| GET    | `/users`        | List all users     | User, Admin |      | Bearer token required
+| POST   | `/users`        | Create new user    | Admin only |       | Bearer token required
+| GET    | `/users/:id`    | Get user by ID     | User, Admin |      | Bearer token required
+| PUT    | `/users/:id`    | Update user        | Admin only |       | Bearer token required
+| DELETE | `/users/:id`    | Delete user        | Admin only |       | Bearer token required
 
 ---
 

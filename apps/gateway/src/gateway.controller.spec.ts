@@ -15,8 +15,10 @@ describe('GatewayController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(gatewayController.getHello()).toBe('Hello World!');
+    it('Wellcome To This Microservice Project!"', () => {
+      expect(gatewayController.getHello()).toBe(
+        'Wellcome To This Microservice Project!',
+      );
     });
   });
 });

@@ -16,7 +16,15 @@ async function bootstrap() {
     .setTitle('NestJS Microservices API')
     .setDescription('API documentation for NestJS Microservices Gateway')
     .setVersion('1.0')
-    .addBearerAuth()
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        in: 'header',
+      },
+      'access-token',
+    )
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

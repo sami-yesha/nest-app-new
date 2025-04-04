@@ -17,6 +17,7 @@ import {
   ApiOperation,
   ApiResponse,
   ApiBody,
+  ApiBearerAuth,
   ApiParam,
 } from '@nestjs/swagger';
 import { UserResponseDto } from 'libs/common/src/interfaces/user.dto';
@@ -29,6 +30,7 @@ import {
 } from 'libs/common/src/interfaces/user.dto';
 
 @ApiTags('Users')
+@ApiBearerAuth('access-token')
 @Controller('users')
 @UseGuards(RolesGuard)
 export class UsersController {

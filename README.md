@@ -39,14 +39,14 @@ A production-ready NestJS microservices architecture with API Gateway, Authentic
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/nest-microservices.git
-cd nest-microservices
+git clone https://github.com/sami-yesha/nest-app-new.git
+cd nest-app-new
 
 2, Install dependencies
 
 yarn install
 
-3, Create .env file
+3, Create .env file in the root directory (nest-app-new)
 
 4, Update .env with your configuration:
 

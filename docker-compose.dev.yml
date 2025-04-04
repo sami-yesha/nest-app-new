@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  auth:
+    extends:
+      file: docker-compose.yml
+      service: auth
+    build:
+      target: development
+    volumes:
+      - ./apps/auth:/app/apps/auth
+      - ./libs:/app/libs
+      - ./tsconfig.json:/app/tsconfig.json
+      - ./nest-cli.json:/app/nest-cli.json
+      - /app/node_modules
+    command: yarn workspace @app/auth start:dev
+
+  users:
+    extends:
+      file: docker-compose.yml
+      service: users
+    build:
+      target: development
+    volumes:
+      - ./apps/users:/app/apps/users
+      - ./libs:/app/libs
+      - ./tsconfig.json:/app/tsconfig.json
+      - ./nest-cli.json:/app/nest-cli.json
+      - /app/node_modules
+    command: yarn workspace @app/users start:dev
+
+  gateway:
+    extends:
+      file: docker-compose.yml
+      service: gateway
+    build:
+      target: development
+    volumes:
+      - ./apps/gateway:/app/apps/gateway
+      - ./libs:/app/libs
+      - ./tsconfig.json:/app/tsconfig.json
+      - ./nest-cli.json:/app/nest-cli.json
+      - /app/node_modules
+    command: yarn workspace @app/gateway start:dev

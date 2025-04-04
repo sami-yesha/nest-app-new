@@ -50,9 +50,6 @@ export class UserResponseDto {
   @ApiProperty({ example: 'jane@example.com' })
   email: string;
 
-  @ApiProperty({ enum: UserRole, example: UserRole.USER })
-  role: UserRole;
-
   @ApiProperty({ type: Date })
   createdAt: Date;
 

@@ -11,5 +11,6 @@ async function bootstrap() {
     },
   );
   await app.listen();
+  console.log('✅ Auth service is running on TCP port 3002');
 }
 bootstrap();

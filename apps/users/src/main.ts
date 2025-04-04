@@ -11,5 +11,6 @@ async function bootstrap() {
     },
   );
   await app.listen();
+  console.log('✅ users service is running on TCP port 3003');
 }
 bootstrap();

@@ -23,5 +23,6 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
   await app.startAllMicroservices();
   await app.listen(3000);
+  console.log('✅ gateway is running on TCP port 3000');
 }
 bootstrap();

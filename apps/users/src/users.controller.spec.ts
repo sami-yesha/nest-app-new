@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 import { CreateUserDto } from 'libs/common/src/interfaces/user.dto';
+import { UserRole } from 'libs/database/src/models/user.model';
 
 describe('UsersController', () => {
   let controller: UsersController;
@@ -31,7 +32,7 @@ describe('UsersController', () => {
         name: 'Test',
         email: 'test@test.com',
         password: 'password',
-        role: 'user',
+        role: UserRole.USER,
       };
       await controller.create(dto);
       // eslint-disable-next-line @typescript-eslint/unbound-method

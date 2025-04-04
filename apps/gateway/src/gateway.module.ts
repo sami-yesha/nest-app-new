@@ -1,4 +1,3 @@
-// apps/gateway/src/gateway.module.ts
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { JwtModule } from '@nestjs/jwt';
@@ -25,7 +24,7 @@ import { RolesGuard } from 'libs/common/src/guards/roles.guard';
         name: 'AUTH_SERVICE',
         transport: Transport.TCP,
         options: {
-          host: 'localhost', // Changed from 'auth-service' to 'localhost'
+          host: 'localhost',
           port: 3002,
         },
       },
@@ -33,7 +32,7 @@ import { RolesGuard } from 'libs/common/src/guards/roles.guard';
         name: 'USER_SERVICE',
         transport: Transport.TCP,
         options: {
-          host: 'localhost', // Changed from 'user-service' to 'localhost'
+          host: 'localhost',
           port: 3003,
         },
       },
